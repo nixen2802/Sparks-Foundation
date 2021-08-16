@@ -1,0 +1,50 @@
+{% extends "bank/base.html" %}
+{% block style %}
+<style>
+  table{
+    border-collapse: separate;
+    border-spacing: 5px;
+  }
+  td, th {
+  border: 3px solid white;
+  width: 100vw;
+  text-align: center;
+  font-family: "Georgia", serif;
+  font-size: 2.4vh;
+}
+</style>
+{% endblock style %}
+{% block content %}
+<header class="jumbotron">
+  <div class="container">
+      <div class="row row-header row-centerer">
+          <h1>Customers</h1>
+      </div>
+      <div class="row under-margin"></div>
+      <br>
+      <br>
+      <br>
+      <div class="row table-displayer">
+        <div style="overflow-x:auto;">
+          <table class="table table-striped" style="border: 3px solid white;">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Balance</th>
+              <th>Details</th>
+            </tr>
+            {% for cust in customers %}
+            <tr>
+              <td>{{ cust.cust_id }}</td>
+              <td><a href="{% url 'customer_detail' cust.cust_id %}" style="color: white">{{ cust.cust_name }}</a></td>
+              <td>&#8377; {{ cust.balance }}</td>
+              <td><a href="{% url 'customer_detail' cust.cust_id %}" style="color: white">View Details</a></td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock content%}

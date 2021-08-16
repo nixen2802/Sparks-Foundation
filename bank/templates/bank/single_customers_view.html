@@ -1,0 +1,54 @@
+{% extends "bank/base.html" %}
+{% block style %}
+<style>
+  .bordered{
+    border: 4px solid white;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .row .first-part{
+    border: 4px solid white;
+  }
+  .upmover {
+  transition: transform .5s;
+  }
+  .upmover:hover {
+  transform: scale(1.5);
+  }
+</style>
+{% endblock style %}
+{% block content %}
+<header class="jumbotron">
+  <div class="container">
+      <div class="row row-header row-centerer">
+          <h1>Customer</h1>
+      </div>
+      <div class="row under-margin"></div>
+      <br>
+      <br>
+      <br>
+      <div class="row bordered">
+        <div class="col-sm-6 first-part" style="align-items: center">
+          {% load static %}<img src="{% static "bank/media/Customer.jpg" %}" width="275px" height="275px" alt="Customer">
+        </div>
+        <div class="col-sm-6">
+          <h2>ID : {{ single_customer.cust_id }}</h2>
+            <br>
+            <h4>Name : {{ single_customer.cust_name }}</h4>
+            <br>
+            <h4>Email : {{ single_customer.cust_email }}</h4>
+            <br>
+            <h4>Balance : &#8377; {{ single_customer.balance }}</h4>
+            <br>
+            <button class="btn btn-safe upmover" onclick="location.href='{% url 'transfer_detail' single_customer.cust_id %}'" ">Transfer Money</button>
+            <br>
+            <br>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <a href="{% url 'customers' %} " style="color: white; text-decoration: none;"><h4><i class="fa fa-angle-double-left"></i> <u>Back to customers</u></h4></a>
+      </div>
+  </div>
+</header>
+{% endblock content%}

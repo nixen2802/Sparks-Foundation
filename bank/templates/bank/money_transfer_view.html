@@ -1,0 +1,137 @@
+{% extends "bank/base.html" %}
+{% block style %}
+<style>
+  .bordered{
+    border: 4px solid white;
+    text-align: center;
+    vertical-align: middle;    
+  }
+  .row .first-part{
+    border: 4px solid white;
+  }
+  label{
+    font-size: 25px;
+  }
+  select{
+    height: 35px;
+    background-color: #bdb9ae;
+    border: 2.5px solid white;
+    margin-left: 3px;
+    color: white;
+  }
+  input{
+    border: 2.5px solid white;
+  }
+  .underlined{
+    border-bottom: 3px solid white;
+    padding-bottom: 2px;
+    margin-bottom: 9px;
+  }
+  #snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+</style>
+{% endblock style %}
+{% block content %}
+<header class="jumbotron">
+  <div class="container">
+    <div class="row row-header row-centerer">
+        <h1>Transfer Money</h1>
+    </div>
+    <div class="row under-margin"></div>
+    <br>
+    <br>
+    <div class="row bordered">
+      <div class="col-sm-6 first-part" style="align-items: center">
+        {% load static %}<img src="{% static "bank/media/money-transfer.png" %}" width="100%" height="275px" alt="Transfer">
+      </div>
+      <div class="col-sm-6">
+        <form method="POST">
+          {% csrf_token %}
+          <br>
+          <div class="underlined">
+            <label>Sender : </label>
+            <select name="sender">
+              <option selected value="{{ single_customer.cust_id }}">{{ single_customer.cust_name }}</option>
+            </select>
+          </div>
+          <div class="underlined">
+            <label>Recipient : </label>
+            <select name="receiver">
+              <option selected>Select Customer</option>
+              {% for c in customers %}
+              <option style="color: white" value="{{c.cust_id}}">{{c.cust_name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="underlined">
+            <label>Amount (&#8377;) : </label>
+            <input type="number" name="amount" required placeholder="Amount to transfer" />
+          </div>
+          <br>
+          <button class="btn btn-safe">Transfer Money</button>
+          <br>
+          <br>
+        </form>
+        <div>
+          {% if message == '' %}
+          <div></div>
+          {% elif message == 'not selected customer' %}
+          <div style="background-color: rgb(124, 124, 78); height: 5.3vh; margin-bottom: 1vh;">Please select customer <i class="fa fa-exclamation-circle"></i></div>
+          {% elif message == 'same selected customer' %}
+          <div style="background-color: rgb(124, 124, 78); height: 5.3vh; margin-bottom: 1vh;">Sender and receiver must be different <i class="fa fa-exclamation-circle"></i></div>
+          {% elif message == 'Success' %}
+          <div style="background-color: green; height: 5.3vh; margin-bottom: 1vh;">Payment Successfull <i class="fa fa-check" aria-hidden="true"></i></div>
+          {% elif message == 'insufficient balance' %}
+          <div style="background-color: red; height: 5.3vh; margin-bottom: 1vh;">Insufficient Balance <i class="fa fa-exclamation-circle"></i></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <a href="{% url 'customer_detail' single_customer.cust_id %} " style="color: white; text-decoration: none;"><h4><i class="fa fa-angle-double-left"></i> <u>Back to Profile</u></h4></a>
+    </div>
+  </div>
+</header>
+{% endblock content%}
+

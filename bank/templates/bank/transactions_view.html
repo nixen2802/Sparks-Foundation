@@ -1,0 +1,63 @@
+{% extends "bank/base.html" %}
+{% block style %}
+<style>
+  table{
+    border-collapse: separate;
+    border-spacing: 5px;
+  }
+  td, th {
+  border: 3px solid white;
+  width: 100vw;
+  text-align: center;
+  font-family: "Georgia", serif;
+  font-size: 2.4vh;
+}
+.suc{
+  background-color: green;
+}
+.fai{
+  background-color: red;
+}
+</style>
+{% endblock style %}
+{% block content %}
+<header class="jumbotron">
+  <div class="container">
+      <div class="row row-header row-centerer">
+          <h1>Transactions</h1>
+      </div>
+      <div class="row under-margin"></div>
+      <br>
+      <br>
+      <br>
+      <div class="row table-displayer">
+        <div style="overflow-x:auto;">
+          <table class="table table-striped" style="border: 3px solid white;">
+            <tr>
+              <th>Sender</th>
+              <th>Receiver</th>
+              <th>Amount</th>
+              <th>Date & Time</th>
+              <th>Status</th>
+            </tr>
+            {% for trans in transactions %}
+            <tr>
+              <td>{{ trans.sender_name }}</td>
+              <td>{{ trans.recipient_name }}</td>
+              <td>&#8377; {{ trans.amount }}</td>
+              <td>{{ trans.date_of_transfer }}</td>
+              {% if trans.status == "Success" %}
+              <td class="suc">{{ trans.status }}</td>
+              {% endif %}
+              {% if trans.status == "Failure" %}
+              <td class="fai">{{ trans.status }}</td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock content%}

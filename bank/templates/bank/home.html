@@ -1,0 +1,27 @@
+{% extends "bank/base.html" %}
+{% block content %}
+  <header class="jumbotron">
+    <div class="container">
+      <div class="row row-header">
+        <div class="col-12 col-sm-6">
+            <h1>World's Best Bank</h1>
+            <br>
+            <br>
+            <p>ABC has been named by Forbes in their list of World's Best Banks 2021. ABC was ranked #1 out of 30 domestic and international banks in world for the second consecutive year.
+              This is the third edition of the 'World's Best Banks' list by Forbes, conducted in partnership with market research firm Statista. Over 43,000 banking customers across the globe
+              were surveyed on their current and former banking relationships. The customer survey rated banks on general satisfaction and key attributes like trust, digital services, financial
+              advice, and fees. "This year's list includes a record number of award winners, reflecting consumers' increasing confidence in their banks," revealed Forbes in its official 
+              announcement.
+            </p>
+            <br>
+            <p class="pattern-quote">
+                <q>For a country, everything will be lost when the jobs of an economist and a banker become highly respected professions.</q>
+            </p>
+        </div>
+        <div class="col-12 col-sm align-self-center">
+            {% load static %}<img src="{% static "bank/media/Bank.jpg" %}" class="img-fluid floater">
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock content %}

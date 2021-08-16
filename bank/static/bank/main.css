@@ -1,0 +1,90 @@
+body {
+    padding: 50px 0px 0px 0px;
+    z-index: 0; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+.logo{
+    font-size: 4vh;
+    font-family: Papyrus, Fantasy;
+    color: floralwhite;
+}
+.row-header{
+    margin: 0px auto;
+    padding: 0px 0px; 
+}
+.row-content {
+margin: 0px auto;
+padding: 50px 0px;
+min-height: 400px; 
+}
+.footer {
+background-color: #83887A;
+padding: 20px 0px;
+}
+.jumbotron {
+background: #bdb9ae;
+color: white; 
+margin-bottom: 0px;
+}
+address {
+font-size: 80%;
+margin: 0px;
+color: #0f0f0f;
+}
+.navbar-dark {
+background-color: #83887A; 
+}
+.navbar-dark .navbar-brand{
+    color: white;
+    font: 20px Arial, sans-serif;
+}
+.navbar-dark .navbar-brand:hover{
+    font: 25px Arial, sans-serif;
+}
+.pattern-quote{
+    font-size: 2.7vh;
+    font-family: 'Lucida Handwriting', cursive;
+}
+.floater { 
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+ 
+@keyframes floating {
+    0% { transform: translate(0,  0px); }
+    50%  { transform: translate(0, 15px); }
+    100%   { transform: translate(0, -0px); }   
+}
+.navbar-dark .navbar-nav .nav-link{
+    font-size: 2.3vh;
+    margin-right: 3vh;
+}
+.navbar-dark .navbar-nav .active .nav-link{
+    background-color: #bdb9ae;
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+    background-color:  #bdb9ae
+}
+
+/* Customers page */
+
+.padded-down{
+    padding-top: 20px;
+}
+.row-centerer{
+    justify-content: center;
+    color: white;
+}
+.under-margin{
+    border: 1px solid;
+}
+.row{
+    justify-content: center;
+}
+table{
+    border: 10px solid black;
+}

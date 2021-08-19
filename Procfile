@@ -1,1 +1,1 @@
-web: gunicorn Sparks-Foundation.wsgi
+web: gunicorn ABCBANK.wsgi

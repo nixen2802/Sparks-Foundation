@@ -26,7 +26,7 @@ SECRET_KEY = 'tto&)2^b=()w*1$f^t!5o=s4eu5$p0*2=l@5ztudx60zw#4j&%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nayansparks.herokuapp.com']
 
 
 # Application definition

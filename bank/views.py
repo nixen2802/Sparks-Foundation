@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from bank.models import Customer,Transactions
-from bank.forms import TransferForm, CustomerForm
+from bank.forms import TransferForm
 import datetime
 from collections import OrderedDict
 

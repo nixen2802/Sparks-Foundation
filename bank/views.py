@@ -94,9 +94,9 @@ def transfer_detail(request, pk):
                     trans_insert.amount=request.POST.get('amount')
                     trans_insert.status="Success"
                     trans_insert.date_of_transfer= datetime.datetime.now().strftime("%Y-%m-%d   %H:%M:%S")
-                    deduction=Customer.objects.get(cust_id=request.POST.get('sender'))
+                    deduction=Customer.objects.get(cust_id=int(request.POST.get('sender')))
                     deduction.balance=deduction.balance-float(request.POST.get('amount'))
-                    credetion=Customer.objects.get(cust_id=request.POST.get('receiver'))
+                    credetion=Customer.objects.get(cust_id=int(request.POST.get('receiver')))
                     credetion.balance=credetion.balance+float(request.POST.get('amount'))
                     deduction.save()
                     credetion.save()

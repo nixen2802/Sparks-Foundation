@@ -118,6 +118,6 @@ def custadd(request):
         cust.cust_id=int(request.POST.get('cust_id'))
         cust.cust_name=request.POST.get('cust_name')
         cust.cust_email=request.POST.get('cust_email')
-        cust.balane=float(request.POST.get('balance'))
+        cust.balance=float(request.POST.get('balance'))
         cust.save()
     return render(request, 'bank/Customer_Add.html')

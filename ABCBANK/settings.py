@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'tto&)2^b=()w*1$f^t!5o=s4eu5$p0*2=l@5ztudx60zw#4j&%'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['nayansparks.herokuapp.com']
 

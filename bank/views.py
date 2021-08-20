@@ -36,16 +36,23 @@ def transfers(request):
                     trans_insert.recipient_name=c.cust_name
             if(flag==0):
                 trans_insert.amount=request.POST.get('amount')
-                trans_insert.status="Success"
-                trans_insert.date_of_transfer= datetime.datetime.now().strftime("%Y-%m-%d   %H:%M:%S")
-                deduction=Customer.objects.get(id=request.POST.get('sender'))
-                deduction.balance=deduction.balance-float(request.POST.get('amount'))
-                credetion=Customer.objects.get(id=request.POST.get('receiver'))
-                credetion.balance=credetion.balance+float(request.POST.get('amount'))
-                deduction.save()
-                credetion.save()
-                trans_insert.save()
-                return render(request, 'bank/transfers_view.html', {'nbar':'transfers_page', 'customers': customers, 'message': "Success"})
+                if(float(request.POST.get('amount'))<0):
+                    trans_insert.amount=request.POST.get('amount')
+                    trans_insert.status="Failure"
+                    trans_insert.date_of_transfer= datetime.datetime.now().strftime("%Y-%m-%d   %H:%M:%S")
+                    trans_insert.save()
+                    return render(request, 'bank/transfers_view.html', {'nbar':'transfers_page', 'customers': customers, 'message': "negative balance"})
+                else:
+                    trans_insert.status="Success"
+                    trans_insert.date_of_transfer= datetime.datetime.now().strftime("%Y-%m-%d   %H:%M:%S")
+                    deduction=Customer.objects.get(id=request.POST.get('sender'))
+                    deduction.balance=deduction.balance-float(request.POST.get('amount'))
+                    credetion=Customer.objects.get(id=request.POST.get('receiver'))
+                    credetion.balance=credetion.balance+float(request.POST.get('amount'))
+                    deduction.save()
+                    credetion.save()
+                    trans_insert.save()
+                    return render(request, 'bank/transfers_view.html', {'nbar':'transfers_page', 'customers': customers, 'message': "Success"})
             else:
                 trans_insert.amount=request.POST.get('amount')
                 trans_insert.status="Failure"
@@ -77,17 +84,24 @@ def transfer_detail(request, pk):
                 if(c.cust_id==int(request.POST.get('receiver'))):
                     trans_insert.recipient_name=c.cust_name
             if(flag==0):
-                trans_insert.amount=request.POST.get('amount')
-                trans_insert.status="Success"
-                trans_insert.date_of_transfer= datetime.datetime.now().strftime("%Y-%m-%d   %H:%M:%S")
-                deduction=Customer.objects.get(id=request.POST.get('sender'))
-                deduction.balance=deduction.balance-float(request.POST.get('amount'))
-                credetion=Customer.objects.get(id=request.POST.get('receiver'))
-                credetion.balance=credetion.balance+float(request.POST.get('amount'))
-                deduction.save()
-                credetion.save()
-                trans_insert.save()
-                return render(request, 'bank/money_transfer_view.html', {'nbar':'transfers_page', 'single_customer': single_customer, 'customers': customers, 'message': "Success"})
+                if(float(request.POST.get('amount'))<0):
+                    trans_insert.amount=request.POST.get('amount')
+                    trans_insert.status="Failure"
+                    trans_insert.date_of_transfer= datetime.datetime.now().strftime("%Y-%m-%d   %H:%M:%S")
+                    trans_insert.save()
+                    return render(request, 'bank/money_transfer_view.html', {'nbar':'transfers_page', 'single_customer': single_customer, 'customers': customers, 'message': "negative balance"})
+                else:
+                    trans_insert.amount=request.POST.get('amount')
+                    trans_insert.status="Success"
+                    trans_insert.date_of_transfer= datetime.datetime.now().strftime("%Y-%m-%d   %H:%M:%S")
+                    deduction=Customer.objects.get(id=request.POST.get('sender'))
+                    deduction.balance=deduction.balance-float(request.POST.get('amount'))
+                    credetion=Customer.objects.get(id=request.POST.get('receiver'))
+                    credetion.balance=credetion.balance+float(request.POST.get('amount'))
+                    deduction.save()
+                    credetion.save()
+                    trans_insert.save()
+                    return render(request, 'bank/money_transfer_view.html', {'nbar':'transfers_page', 'single_customer': single_customer, 'customers': customers, 'message': "Success"})
             else:
                 trans_insert.amount=request.POST.get('amount')
                 trans_insert.status="Failure"

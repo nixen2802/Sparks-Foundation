@@ -122,6 +122,8 @@
           <div style="background-color: green; height: 5.3vh; margin-bottom: 1vh;">Payment Successfull <i class="fa fa-check" aria-hidden="true"></i></div>
           {% elif message == 'insufficient balance' %}
           <div style="background-color: red; height: 5.3vh; margin-bottom: 1vh;">Insufficient Balance <i class="fa fa-exclamation-circle"></i></div>
+          {% elif message == 'negative balance' %}
+          <div style="background-color: red; height: 5.3vh; margin-bottom: 1vh;">Amount can't be negative <i class="fa fa-exclamation-circle"></i></div>
           {% endif %}
         </div>
       </div>

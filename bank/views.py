@@ -73,6 +73,8 @@ def transfer_detail(request, pk):
     if(request.method=='POST'):
         if(request.POST.get('sender')=='Select Customer' or request.POST.get('receiver')=='Select Customer'):
             return render(request, 'bank/money_transfer_view.html',{'nbar':'transfers_page', 'single_customer': single_customer, 'customers': customers, 'message': "not selected customer"})
+        elif(request.POST.get('sender')==request.POST.get('receiver')):
+             return render(request, 'bank/money_transfer_view.html',{'nbar':'transfers_page', 'single_customer': single_customer, 'customers': customers, 'message': "same selected customer"})
         else:
             trans_insert=Transactions()
             flag=0

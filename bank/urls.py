@@ -10,6 +10,5 @@ urlpatterns = [
     path('transactions/', views.transactions, name='transactions'),
     path('transfers/', views.transfers, name='transfers'),
     path('transfers/<int:pk>/', views.transfer_detail, name='transfer_detail'),
-    path('tran/',views.transfers, name='transfers'),
-    path('cust/',views.custadd, name='customers')
+    path('tran/',views.transfers, name='transfers')
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

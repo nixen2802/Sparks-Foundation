@@ -112,12 +112,3 @@ def transfer_detail(request, pk):
         return render(request, 'bank/money_transfer_view.html',{'nbar':'transfers_page', 'single_customer': single_customer, 'customers': customers, 'message': ""})
     
 
-def custadd(request):
-    cust=Customer()
-    if(request.method=='POST'):
-        cust.cust_id=int(request.POST.get('cust_id'))
-        cust.cust_name=request.POST.get('cust_name')
-        cust.cust_email=request.POST.get('cust_email')
-        cust.balance=float(request.POST.get('balance'))
-        cust.save()
-    return render(request, 'bank/Customer_Add.html')

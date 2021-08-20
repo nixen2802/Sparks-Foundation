@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from bank.models import Customer,Transactions
-from bank.forms import TransferForm
+from bank.forms import TransferForm, CustomerForm
 import datetime
 from collections import OrderedDict
 
@@ -110,3 +110,14 @@ def transfer_detail(request, pk):
                 return render(request, 'bank/money_transfer_view.html', {'nbar':'transfers_page', 'single_customer': single_customer, 'customers': customers, 'message': "insufficient balance"})
     else:
         return render(request, 'bank/money_transfer_view.html',{'nbar':'transfers_page', 'single_customer': single_customer, 'customers': customers, 'message': ""})
+    
+
+def custadd(request):
+    cust=Customer()
+    if(request.method=='POST'):
+        cust.cust_id=int(request.POST.get('cust_id'))
+        cust.cust_name=request.POST.get('cust_name')
+        cust.cust_email=request.POST.get('cust_email')
+        cust.balane=float(request.POST.get('balance'))
+        cust.save()
+    return render(request, 'bank/Customer_Add.html')

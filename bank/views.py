@@ -63,11 +63,11 @@ def transfers(request):
         return render(request, 'bank/transfers_view.html', {'nbar':'transfers_page', 'customers': customers, 'message': ""})
 
 def customer_detail(request, pk):
-    single_customer = Customer.objects.get(id=pk)
+    single_customer = Customer.objects.get(cust_id=pk)
     return render(request, 'bank/single_customers_view.html',{'nbar':'customers_page', 'single_customer': single_customer})
 
 def transfer_detail(request, pk):
-    single_customer = Customer.objects.get(id=pk)
+    single_customer = Customer.objects.get(cust_id=pk)
     customers=Customer.objects.all()
     transactions_info=Transactions.objects.all()
     if(request.method=='POST'):
@@ -94,9 +94,9 @@ def transfer_detail(request, pk):
                     trans_insert.amount=request.POST.get('amount')
                     trans_insert.status="Success"
                     trans_insert.date_of_transfer= datetime.datetime.now().strftime("%Y-%m-%d   %H:%M:%S")
-                    deduction=Customer.objects.get(id=request.POST.get('sender'))
+                    deduction=Customer.objects.get(cust_id=request.POST.get('sender'))
                     deduction.balance=deduction.balance-float(request.POST.get('amount'))
-                    credetion=Customer.objects.get(id=request.POST.get('receiver'))
+                    credetion=Customer.objects.get(cust_id=request.POST.get('receiver'))
                     credetion.balance=credetion.balance+float(request.POST.get('amount'))
                     deduction.save()
                     credetion.save()

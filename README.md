@@ -15,7 +15,7 @@ To run this webiste :
 <ul>
   <li>Clone repository.<br />
   <li>Install all dependencies mentioned in requirements.txt.<br /></li>
-  <li>Create a database named `"TheSparksFoundation".
+  <li>Create a database named "TheSparksFoundation".
   <li>Run command python manage.py makemigrations.<br /></li>
   <li>After that run python manage.py migrate.<br /></li>
   <li>If there is no errors run python manage.py runserver.<br /></li>
